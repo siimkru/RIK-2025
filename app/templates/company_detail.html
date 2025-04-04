@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% block title %}Osaühingu detailvaade{% endblock %}
+{% block content %}
+<h1>{{ company.name }}</h1>
+<p><strong>Registrikood:</strong> {{ company.reg_code }}</p>
+<p><strong>Asutamiskuupäev:</strong> {{ company.established_date }}</p>
+<p><strong>Kogukapital:</strong> {{ company.capital }}€</p>
+
+<h2>Osanikud</h2>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Nimi</th>
+            <th>Osakaal</th>
+            <th>Asutaja</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for shareholder in company.shareholders %}
+            <tr>
+                <td>
+                    {% if shareholder.shareholder_type == 'physical' %}
+                        {{ shareholder.first_name }} {{ shareholder.last_name }}
+                    {% else %}
+                        {{ shareholder.legal_name }}
+                    {% endif %}
+                </td>
+                <td>{{ shareholder.share_amount }}€</td>
+                <td>{{ 'Jah' if shareholder.founder else 'Ei' }}</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

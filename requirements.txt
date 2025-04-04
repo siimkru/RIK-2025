@@ -1,4 +1,5 @@
-Flask
-SQLAlchemy
+flask
 pytest
 gunicorn
+flask_sqlalchemy
+flask_wtf

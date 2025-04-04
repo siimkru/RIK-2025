@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block title %}Avaleht{% endblock %}
+{% block content %}
+<h1>Avaleht</h1>
+<form method="get" action="{{ url_for('main.index') }}">
+    <div class="form-group">
+        <label for="search">Otsing:</label>
+        <input type="text" class="form-control" id="search" name="search" placeholder="Sisesta osaühingu või osaniku nimi/kood">
+    </div>
+    <button type="submit" class="btn btn-primary">Otsi</button>
+</form>
+{% endblock %}

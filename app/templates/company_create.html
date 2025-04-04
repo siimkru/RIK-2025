@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% block title %}Uue osaühingu loomine{% endblock %}
+{% block content %}
+<h1>Loo uus osaühing</h1>
+<form method="post" action="{{ url_for('main.company_create') }}">
+    <div class="form-group">
+        <label for="name">Osaühingu nimi:</label>
+        <input type="text" class="form-control" id="name" name="name" required minlength="3" maxlength="100">
+    </div>
+    <div class="form-group">
+        <label for="reg_code">Registrikood:</label>
+        <input type="text" class="form-control" id="reg_code" name="reg_code" required pattern="\d{7}">
+    </div>
+    <div class="form-group">
+        <label for="established_date">Asutamiskuupäev:</label>
+        <input type="date" class="form-control" id="established_date" name="established_date" required max="{{ "%Y-%m-%d"|format() }}">
+    </div>
+    <div class="form-group">
+        <label for="capital">Kogukapital (eurodes):</label>
+        <input type="number" class="form-control" id="capital" name="capital" required min="2500">
+    </div>
+
+    <h2>Osanikud</h2>
+    <div class="form-group">
+        <label for="shareholder_type">Osaniku tüüp:</label>
+        <select class="form-control" id="shareholder_type" name="shareholder_type">
+            <option value="physical">Füüsiline isik</option>
+            <option value="legal">Juriidiline isik</option>
+        </select>
+    </div>
+    <div class="form-group" id="physical_fields">
+        <label for="first_name">Eesnimi:</label>
+        <input type="text" class="form-control" id="first_name" name="first_name">
+        <label for="last_name">Perenimi:</label>
+        <input type="text" class="form-control" id="last_name" name="last_name">
+        <label for="personal_code">Isikukood:</label>
+        <input type="text" class="form-control" id="personal_code" name="personal_code">
+    </div>
+    <div class="form-group" id="legal_fields" style="display: none;">
+        <label for="legal_name">Juriidilise isiku nimi:</label>
+        <input type="text" class="form-control" id="legal_name" name="legal_name">
+        <label for="legal_reg_code">Registrikood:</label>
+        <input type="text" class="form-control" id="legal_reg_code" name="legal_reg_code">
+    </div>
+
+    <div class="form-group">
+        <label for="share_amount">Osaniku osa suurus eurodes:</label>
+        <input type="number" class="form-control" id="share_amount" name="share_amount" required min="1">
+    </div>
+
+    <button type="submit" class="btn btn-primary">Loo osaühing</button>
+</form>
+{% endblock %}
